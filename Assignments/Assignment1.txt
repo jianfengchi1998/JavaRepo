@@ -1,0 +1,130 @@
+1.	What is JDK? JRE? JVM?
+JDK is a development environment for building applications, applets, and components using the java programming language, or java development kit.
+JRE is Java Runtime Environment, an installation package that provides an environment to only run  the java program on to the machine.
+JVM is java virtual machine, it loads, verifies and executes Java bytecode.
+2.	What is java compiler?
+Java compiler is a program that takes the text file work of a developer and compiles it into a platform-independent java file.
+3.	Why is java platform independent?
+Because it does not depend on any type of platform. In java, programs are compiled into byte code and the byte code is platform independent. The byte code is executed by the java virtual machine. Any platform with JVM installed is potential for running java program.
+4.	What is IDE? Why is it important for developers?
+IDE is integrated development environment, a software application that provides comprehensive facilities to computer programmer for software development. It enables programmers to consolidate the different aspects of writing a computer program, and increases the productivity by combining common activities of writing software into a application: editing source code, building executables, and debugging.
+5.	Is java case sensitive?
+Yes, Java is case sensitive.
+6.	What do the following key words do?
+static, final, public, private, void, null, package, Class, new
+Static keyword means the particular member belongs to the class itself, rather than to an instance of the class. And this static member is shared across all instances of the class.
+Final keyword makes an entity can only be assigned once. Once a final variable has been assigned, it always contains the same value. And therefore it is used when creating constants in java.
+Public is an access modifier in Java, a subject been public mean this subject is visible for any other classes.
+Private is an access modifier in java, a subject been private means it can only be accessed within the same class. This restrictive access provided strongest form of encapsulation.
+Void keyword is used to specify a curtain method does not return anything.
+Null is an empty reference in java. It indicates that the variable does not refer to any object or array.
+Package in java is used to group related classes and interfaces, it can provide access control, prevent naming conflict.
+Class is blueprint of object or a set of instructions to complete curtain task/create curtain object.
+New in java is a keyword use to create an array or an object.
+7.	What is primitive type and reference type?
+Primitive data type is predefined data types of Java. A reference type is a reference of dynamically created objects in java.
+8.	Is parameter passed by value or reference?
+Primitive type parameter is passed by value, and object parameter is passed by the reference to the object’s address in memory.
+9.	What is the output: System.out.println(1 > 0 : “A”:”B”);
+A
+10.	How to define constants in java?
+Using the keyword final in declaration, and assign a value to the variable at declaration.
+11.	What is String? Is it primitive type?
+String is a java class backed by the char array. It is not java’s primitive type.
+12.	How to check if a String is representing a number?
+We can use the wrapper class’s parse method, for example, Integer.parseInt();
+13.	Write a program to implement the following activity diagram:
+
+ 
+public static void demo() 
+{
+	String x;
+	Scanner keyboard = new Scanner(System.in);
+	while(true)
+	{
+		int result=0;
+		System.out.println("Please enter a positive integer, or enter q to exit the program.");
+		x = keyboard.nextLine();
+		if (x.equals("q"))
+		{
+			System.out.println("User exit the program.");
+			break;
+		}
+		else
+		{
+			try 
+			{
+				int x2 = Integer.parseInt(x);
+				if(x2<0)
+				{
+					System.out.println("Input integer has to be positive.");
+				}
+				else
+				{
+					for (int i=1; i<x2+1;i++)
+					{
+						result += i;
+					}
+					System.out.println("Resulting number is " + result);
+				}
+			}
+			catch (NumberFormatException e)
+			{
+				System.out.println("Input can only be a positive integer.");
+			}
+		}
+	}
+	keyboard.close();
+}
+14.	Write a program to merge two array of int.
+
+public static int[] merge(int[] inputArr1, int[] inputArr2) 
+{
+	int[] result;
+	if((inputArr1==null)||(inputArr2==null))
+	{
+		return null;
+	}
+	int length = inputArr1.length+inputArr2.length;
+	result = new int[length];
+	for(int i=0;i<inputArr1.length;i++)
+	{
+		result[i] = inputArr1[i];
+	}	
+	for(int i=0;i<inputArr2.length;i++)
+	{
+		result[i+inputArr1.length] = inputArr2[i];
+	}
+	return result;
+}
+15.	Write a program to find the second largest number inside an array of int.
+
+public static int findSecondLargest(int[] arr) 
+{
+	int max, secMax;
+	if(arr[0]<arr[1])
+	{
+		max = arr[1];
+		secMax = arr[0];
+	}
+	else
+	{
+		max = arr[0];
+		secMax = arr[1];
+	}
+	if(arr.length==2)
+		return secMax;
+	for (int i=2; i<arr.length; i++)
+	{
+		if (arr[i]>secMax)
+		{
+			if(arr[i]>max)
+			{
+				secMax = max;
+				max = arr[i];
+			}
+			else secMax = arr[i];
+		}
+	}
+	return secMax;
+}

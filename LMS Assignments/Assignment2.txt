@@ -36,3 +36,52 @@ Object
 •	Take care of the invalid inputs. Exception handling.
 •	Get proper result displayed.
 ”There are XXX file(s) and XXX folder(s) inside folder XXX with extension XXX.” or something user friendly.
+
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileNotFoundException;
+class Criteria
+{
+	String path;
+	boolean includeSubFolder;
+	File[] subFiles;
+	public Criteria() 
+	{
+		
+	}
+	
+	public Criteria(String path) throws FileNotFoundException 
+	{
+		this.path = path;
+		File file = new File(path);
+		subFiles = file.listFiles(new FileFilter() {
+			public boolean accept(File f) {
+		        return f.isDirectory();
+		    }
+		});
+	}
+	
+	public int getNumSubFiles() 
+	{
+		return subFiles.length;
+	}
+}
+
+
+public class Assignment2 
+{
+	static void count(Criteria criteria)
+	{
+		System.out.printf("There are %d file(s)", criteria.getNumSubFiles());
+	}
+	public static void main(String[] args) throws FileNotFoundException 
+	{
+		System.out.println("Enter the directory to target file:");
+		Scanner s = new Scanner(System.in);
+		String path = s.next();
+		Criteria criteria = new Criteria(path);
+		count(criteria);
+	}
+}
+
